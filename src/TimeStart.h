@@ -1,48 +1,48 @@
-class CzasStart
+class TimeStart
 {
 private:
 public:
-    CzasStart()
+    TimeStart()
     {
     }
     void PlayStart()
     {
 
-        extern CzasPracy czasPracy;
-        if (czasPracy.isWork == true)
+        extern TimeWork timeWork;
+        if (timeWork.isWork == true)
             return;
-        czasPracy.isWork = true;
-        mSekkundy = 0;
-        sekundy = 0;
-        czasPracy.sekundyWorkTmp = 0;
+        timeWork.isWork = true;
+        miliSec = 0;
+        sec = 0;
+        timeWork.secWorkTmp = 0;
         LampOn();
     }
     void Play()
     {
         //   extern KeyData keyData;
         extern void PrintDisplay(int _data);
-        extern CzasPracy czasPracy;
+        extern TimeWork timeWork;
 
-        int sekTmp = czasPracy.sekundyWork - sekundy;
+        int sekTmp = timeWork.secWork - sec;
         PrintDisplay(sekTmp);
         if (sekTmp <= 0)
         {
-            czasPracy.isWork = false;
+            timeWork.isWork = false;
             LampOff();
             tone(buzzPin, 2000, 100);
             delay(3000);
-            PrintDisplay(czasPracy.sekundyWork);
+            PrintDisplay(timeWork.secWork);
         }
     }
     void Stop()
     {
         extern void PrintDisplay(int _data);
 
-        czasPracy.isWork = false;
+        timeWork.isWork = false;
         LampOff();
         tone(buzzPin, 2000, 100);
         delay(3000);
-        PrintDisplay(czasPracy.sekundyWork);
+        PrintDisplay(timeWork.secWork);
     }
 
     void LampOn(int _value = 255)

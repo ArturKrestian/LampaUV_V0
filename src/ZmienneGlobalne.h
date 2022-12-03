@@ -1,42 +1,42 @@
 #include <Arduino.h>
 //#include <TM1637Display.h>
 
-volatile int sekundy = 30;
-volatile int mSekkundy = 0;
+volatile int sec = 30;
+volatile int miliSec = 0;
 
 const int intCzas = 1000;
 
-int sekundyOld = -1;
+int secOld = -1;
 
 bool isLamp2On=false;
 
 bool keyOkPush=false;
 
-class CzasPracy
+class TimeWork
 {
 private:
 public:
-    int sekundyWork = 0;
-    int sekundyWorkTmp = 0;
+    int secWork = 0;
+    int secWorkTmp = 0;
     bool isWork = false;
     bool isStepStart=false;
 
-    CzasPracy()
+    TimeWork()
     {
     }
 
-    void SetCzasPlus()
+    void SetTimeAdd()
     {
-        if (sekundyWork < 600)
+        if (secWork < 600)
         {
-            sekundyWork++;
-        Serial.println(sekundyWork);
+            secWork++;
+        Serial.println(secWork);
         }
     }
     void SetCzasMinus()
     {
-        if (sekundyWork > 0)
-            sekundyWork--;
+        if (secWork > 0)
+            secWork--;
     }
 };
-CzasPracy czasPracy;
+TimeWork timeWork;

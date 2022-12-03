@@ -8,7 +8,7 @@ public:
     {
     }
     private:
-    int KlawiszRead()
+    int KeyRead()
     {
         // 0 nieprzyciśnięty
         // 1 btn ok
@@ -16,38 +16,35 @@ public:
         //100 btn down
         // kombinacja=suma
 
-        int _klawisz = 0;
+        int _key = 0;
 
         if (digitalRead(btn_OkPin) == false)
-            _klawisz = 1;
+            _key = 1;
         if (digitalRead(btn_UpPin) == false)
-            _klawisz = _klawisz + 10;
+            _key = _key + 10;
         if (digitalRead(btn_DownPin) == false)
-            _klawisz = _klawisz + 100;
+            _key = _key + 100;
 
-        return _klawisz;
+        return _key;
     }
     public:
-    KeyData_Str KlawiszWynik()
+    KeyData_Str KeyValue()
     {
-     //   extern int sekundy;
-      //  extern int mSekkundy;
-        int keyTmp=KlawiszRead();
+        int keyTmp=KeyRead();
         if(keyTmp==0&&keyDataOld.key==0)return keyDataOld;
         if(keyTmp!=keyDataOld.key&&keyTmp!=0)
         {
-            sekundy=0;
-            mSekkundy=0;
+            sec=0;
+            miliSec=0;
             keyDataOld.key=keyTmp;
             keyDataOld.time=-1;
-         //   tone(buzzPin, 2000, 100);
             return keyDataOld;
         }
         if(keyTmp==0&&keyDataOld.key!=0)
         {
             KeyData_Str keyDataTmp=keyDataOld;
             keyDataOld.key=0;
-            keyDataTmp.time=sekundy;
+            keyDataTmp.time=sec;
             keyDataOld.time=-1;
            // tone(buzzPin, 2000, 100);
             return keyDataTmp;

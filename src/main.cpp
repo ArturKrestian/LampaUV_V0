@@ -6,14 +6,14 @@
 #include <ZmienneGlobalne.h>
 #include <Struktury.h>
 #include <KeyData.h>
-#include <CzasStart.h>
+#include <TimeStart.h>
 #include <KeyMenu.h>
 
-#include <Przerwanie.h>
+#include <Irq.h>
 
 TM1637Display display(disp_ClkPin, disp_DioPin);
 KeyData keyData;
-CzasStart czasStart;
+TimeStart timeStart;
 KeyMenu keyMenu;
 
 void PrintDisplay(int _data)
@@ -39,7 +39,7 @@ void PrintDisplay(int _data)
 
 void EpromGet()
 {
-  EEPROM.get(0, czasPracy.sekundyWork);
+  EEPROM.get(0, timeWork.secWork);
 }
 
 void setup()
@@ -58,21 +58,18 @@ void setup()
   Serial.println("start");
 
   Timer1.initialize(intCzas);
-  Timer1.attachInterrupt(przerwanie);
+  Timer1.attachInterrupt(Irq);
   tone(buzzPin, 2000, 100);
   EpromGet();
-  PrintDisplay(czasPracy.sekundyWork);
-  //  digitalWrite(lamp_OutPin,true);
-  // digitalWrite(lamp2_OutPin,true);
-  // PrintDisplay(10);
+  PrintDisplay(timeWork.secWork);
 }
 
 void loop()
 {
-  // Serial.println(czasPracy.sekundyWork);
+
   keyMenu.Menu();
-  if (czasPracy.isWork == true)
-    czasStart.Play();
+  if (timeWork.isWork == true)
+    timeStart.Play();
   // if (sekundyOld != sekundy)
   //{
   //  KeyData_Str keyDataTmp=keyData.KlawiszWynik();
