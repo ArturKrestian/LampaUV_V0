@@ -2,9 +2,11 @@
 #include <TM1637Display.h>
 #include <TimerOne.h>
 #include <EEPROM.h>
+
 #include <defPin.h>
 #include <ZmienneGlobalne.h>
 #include <Struktury.h>
+
 #include <KeyData.h>
 #include <TimeStart.h>
 #include <KeyMenu.h>
@@ -25,8 +27,7 @@ void PrintDisplay(int _data)
       SEG_A | SEG_D
 
   };
-  // display.clear();
-  // tone(buzzPin, 2000, 100);
+
   display.showNumberDec(_data, false, 3, 1);
   if (isLamp2On == false)
   {
@@ -58,11 +59,11 @@ void setup()
   Serial.begin(9600);
   Serial.println("start");
 
-  Timer1.initialize(intCzas);
+  Timer1.initialize(irqTime);
   Timer1.attachInterrupt(Irq);
-  tone(buzzPin, 2000, 100);
   EpromGet();
   PrintDisplay(timeWork.secWork);
+  tone(buzzPin, 2000, 100);
 }
 
 void loop()

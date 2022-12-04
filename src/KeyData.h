@@ -7,13 +7,14 @@ public:
     KeyData()
     {
     }
-    private:
+
+private:
     int KeyRead()
     {
         // 0 nieprzyciśnięty
         // 1 btn ok
         // 10 btn up
-        //100 btn down
+        // 100 btn down
         // kombinacja=suma
 
         int _key = 0;
@@ -27,29 +28,30 @@ public:
 
         return _key;
     }
-    public:
+
+public:
     KeyData_Str KeyValue()
     {
-        int keyTmp=KeyRead();
-        if(keyTmp==0&&keyDataOld.key==0)return keyDataOld;
-        if(keyTmp!=keyDataOld.key&&keyTmp!=0)
+        int keyTmp = KeyRead();
+        if (keyTmp == 0 && keyDataOld.key == 0)
+            return keyDataOld;
+        if (keyTmp != keyDataOld.key && keyTmp != 0)
         {
-            sec=0;
-            miliSec=0;
-            keyDataOld.key=keyTmp;
-            keyDataOld.time=-1;
+            sec = 0;
+            miliSec = 0;
+            keyDataOld.key = keyTmp;
+            keyDataOld.time = -1;
             return keyDataOld;
         }
-        if(keyTmp==0&&keyDataOld.key!=0)
+        if (keyTmp == 0 && keyDataOld.key != 0)
         {
-            KeyData_Str keyDataTmp=keyDataOld;
-            keyDataOld.key=0;
-            keyDataTmp.time=sec;
-            keyDataOld.time=-1;
-           // tone(buzzPin, 2000, 100);
+            KeyData_Str keyDataTmp = keyDataOld;
+            keyDataOld.key = keyTmp;
+            keyDataOld.time = -1;
+            keyDataTmp.time = sec;
             return keyDataTmp;
         }
-        keyDataOld.time=-2;
+        keyDataOld.time = -2;
         return keyDataOld;
     }
 };

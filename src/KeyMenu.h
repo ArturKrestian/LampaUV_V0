@@ -27,24 +27,18 @@ public:
         case 0:
         {
             keyOkPush=false;
-             keyTmp = keyData.KeyValue();
-
             break;
         }
         case 1: // ok
         {
             if(keyOkPush==true)break;
-            //  Serial.println(">>OK");
             if (timeWork.isWork == true && keyTmp.time > -1)
             {
                 timeStart.Stop();
-                // Serial.println("keyTmp.key" + (String)keyTmp.key);
                 delay(500);
-                keyTmp = keyData.KeyValue();
-
                 break;
             }
-            if(keyTmp.time<0&&sec>0&&keyOkPush==false&&timeWork.isWork == false)
+            if(keyTmp.time==-2&&sec>0&&keyOkPush==false&&timeWork.isWork == false)
             {
                 tone(buzzPin, 4000, 100);
                 keyOkPush=true;
@@ -55,14 +49,11 @@ public:
                 break;
             if (keyTmp.time < 1&&timeWork.isWork == false)
             {
-
                 EpromPut();
                 timeStart.PlayStart();
                 delay(500);
-
-                keyTmp = keyData.KeyValue();
             }
-                Serial.println("time=" + String(keyTmp.time));
+               // Serial.println("time=" + String(keyTmp.time));
             break;
         }
         case 10: // up
@@ -71,7 +62,7 @@ public:
             {
                 break;
             }
-            Serial.println(">>up");
+     //       Serial.println(">>up");
             if (keyTmp.time == -2)
             {
                 if (timeWork.isStepStart == false)
@@ -96,7 +87,7 @@ public:
             {
                 return;
             }
-            Serial.println(">>down");
+      //      Serial.println(">>down");
             if (keyTmp.time == -2)
             {
                 if (timeWork.isStepStart == false)

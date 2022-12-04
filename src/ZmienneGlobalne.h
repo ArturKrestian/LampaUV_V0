@@ -1,9 +1,9 @@
 #include <Arduino.h>
 
-volatile int sec = 30;
+volatile int sec = 0;
 volatile int miliSec = 0;
 
-const int intCzas = 1000;
+const int irqTime = 1000;
 
 int secOld = -1;
 
