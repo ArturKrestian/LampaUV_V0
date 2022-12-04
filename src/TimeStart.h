@@ -37,6 +37,7 @@ public:
     void Stop()
     {
         extern void PrintDisplay(int _data);
+        extern TimeWork timeWork;
 
         timeWork.isWork = false;
         LampOff();

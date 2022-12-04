@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <TM1637Display.h>
 #include <TimerOne.h>
-#include "EEPROM.h"
+#include <EEPROM.h>
 #include <defPin.h>
 #include <ZmienneGlobalne.h>
 #include <Struktury.h>
@@ -15,6 +15,7 @@ TM1637Display display(disp_ClkPin, disp_DioPin);
 KeyData keyData;
 TimeStart timeStart;
 KeyMenu keyMenu;
+TimeWork timeWork;
 
 void PrintDisplay(int _data)
 {

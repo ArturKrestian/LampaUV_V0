@@ -15,7 +15,6 @@ public:
         extern void PrintDisplay(int _data);
         extern TimeWork timeWork;
         extern TimeStart timeStart;
-        //   extern int sekundy;
 
         KeyData_Str keyTmp = keyData.KeyValue();
 
@@ -118,34 +117,36 @@ public:
         }
         case 101:
         {
-            PrintDisplay(101);
+         //  PrintDisplay(101);
             break;
         }
         case 110:
         {
-            PrintDisplay(110);
+          //  PrintDisplay(110);
             break;
         }
         case 111:
         {
-            PrintDisplay(111);
+         //   PrintDisplay(111);
             break;
         }
         case 11:
         {
-            PrintDisplay(11);
+          //  PrintDisplay(11);
 
             break;
         }
         default:
         {
-            PrintDisplay(keyTmp.key);
+           // PrintDisplay(keyTmp.key);
             break;
         }
         }
     }
     void EpromPut()
     {
+        extern TimeWork timeWork;
+
         EEPROM.put(0, timeWork.secWork);
     }
 };
