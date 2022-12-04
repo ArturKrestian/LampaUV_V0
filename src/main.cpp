@@ -70,13 +70,6 @@ void loop()
 {
 
   keyMenu.Menu();
-  if (timeWork.isWork == true)
-    timeStart.Play();
-  // if (sekundyOld != sekundy)
-  //{
-  //  KeyData_Str keyDataTmp=keyData.KlawiszWynik();
-  // if(keyDataTmp.time!=-1)
-  // PrintDisplay(keyDataTmp.time);
-  // sekundyOld = sekundy;
-  // }
+  timeStart.Play();
+  
 }

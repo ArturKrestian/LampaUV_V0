@@ -21,7 +21,7 @@ public:
         if (secWork < 600)
         {
             secWork++;
-        Serial.println(secWork);
+     //   Serial.println(secWork);
         }
     }
     void SetCzasMinus()

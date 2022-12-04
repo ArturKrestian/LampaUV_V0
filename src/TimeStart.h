@@ -7,7 +7,6 @@ public:
     }
     void PlayStart()
     {
-
         extern TimeWork timeWork;
         if (timeWork.isWork == true)
             return;
@@ -19,7 +18,10 @@ public:
     }
     void Play()
     {
-        //   extern KeyData keyData;
+        extern TimeWork timeWork;
+        
+        if (timeWork.isWork == false)
+            return;
         extern void PrintDisplay(int _data);
         extern TimeWork timeWork;
 
